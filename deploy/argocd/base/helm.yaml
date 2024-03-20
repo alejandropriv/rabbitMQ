@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rabbitmq-service
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "git@github.com:alejandropriv/stock-rabbitmq.git"
+    path: deploy/helm
+    helm:
+      releaseName: rabbitmq-service
+
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: rabbitmq-service
+    
